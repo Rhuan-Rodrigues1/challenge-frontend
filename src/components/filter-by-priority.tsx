@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { ArrowIcon } from "./icons/arrow-icon";
 import { useState } from "react";
+import { useFilter } from "@/hooks/useFilter";
+import { PriorityTypes } from "@/types/priority-types";
 
 interface FilterByPriorityProps {}
 
@@ -55,6 +57,12 @@ const PriorityFilter = styled.ul`
 
 export function FilterByPriority(props: FilterByPriorityProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const { setPriority } = useFilter();
+
+  const handleUpdatePriority = (value: PriorityTypes) => {
+    setPriority(value);
+    setIsOpen(false);
+  };
 
   const handleOpen = () => setIsOpen((prev) => !prev);
   return (
@@ -66,10 +74,18 @@ export function FilterByPriority(props: FilterByPriorityProps) {
 
       {isOpen && (
         <PriorityFilter>
-          <li>Novidades</li>
-          <li>Preço: Maior - menor</li>
-          <li>Preço: Menor - maior</li>
-          <li>Mais vendidos</li>
+          <li onClick={() => handleUpdatePriority(PriorityTypes.NEWS)}>
+            Novidades
+          </li>
+          <li onClick={() => handleUpdatePriority(PriorityTypes.BIGGEST_PRICE)}>
+            Preço: Maior - menor
+          </li>
+          <li onClick={() => handleUpdatePriority(PriorityTypes.MINOR_PRICE)}>
+            Preço: Menor - maior
+          </li>
+          <li onClick={() => handleUpdatePriority(PriorityTypes.POPULARITY)}>
+            Mais vendidos
+          </li>
         </PriorityFilter>
       )}
     </FilterContainer>
