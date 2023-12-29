@@ -8,7 +8,7 @@ interface ProductsListProps {}
 
 const ListContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, 256px);
+  grid-template-columns: 256px repeat(auto-fill, 256px) 256px;
   grid-gap: 32px;
   max-width: 100%;
 
@@ -17,7 +17,6 @@ const ListContainer = styled.div`
 
 export function ProductsList(props: ProductsListProps) {
   const { data } = useProducts();
-  console.log(data);
 
   return (
     <ListContainer>

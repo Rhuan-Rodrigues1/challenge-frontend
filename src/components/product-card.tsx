@@ -1,4 +1,5 @@
 import { styled } from "styled-components";
+import { priceFormat } from "../utils/price-format";
 
 interface ProductCardpProps {
   image: string;
@@ -55,13 +56,14 @@ const Card = styled.div`
 `;
 
 export function ProductCard(props: ProductCardpProps) {
+  const price = priceFormat(props.price);
   return (
     <Card>
       <img src={props.image} alt="imagem do produto" />
       <div>
         <h3>{props.title}</h3>
         <div></div>
-        <p>{props.price}</p>
+        <p>{price}</p>
       </div>
     </Card>
   );
