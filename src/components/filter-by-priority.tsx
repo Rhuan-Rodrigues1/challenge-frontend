@@ -10,6 +10,7 @@ const FilterContainer = styled.div`
   display: flex;
   align-items: center;
   position: relative;
+  z-index: 1000;
 
   button {
     border: none;
